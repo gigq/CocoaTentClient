@@ -62,12 +62,13 @@
     
     
     /*
-    self.tentVersion      = @"0.1.0";
-    self.tentHostProtocol = @"http";
-    self.tentHost         = @"localhost";
-    self.tentHostPort     = @"3000";
-    self.tentMimeType     = @"application/vnd.tent.v0+json";
-    self.urlScheme        = @"cocoatentclient";
+     self.tentVersion      = @"0.1.0";
+     self.tentHostProtocol = @"https";
+     self.tentHost         = @"gigq.tent.is";
+     self.tentHostPort     = @"443";
+     self.tentRoot         = @"/tent";
+     self.tentMimeType     = @"application/vnd.tent.v0+json";
+     self.urlScheme        = @"cocoatentclient";
      */
     
     self.cocoaTentApp = cocoaTentApp;
@@ -158,7 +159,7 @@
                         self.cocoaTentCommunication.state,
                         [[self.cocoaTentApp.scopes allKeys] componentsJoinedByString:@","]];
     
-    NSString *fullParams = [NSString stringWithFormat:@"%@://%@:%@/%@?%@", self.cocoaTentCommunication.tentHostProtocol, self.cocoaTentCommunication.tentHost, self.cocoaTentCommunication.tentHostPort, @"oauth/authorize", params];
+    NSString *fullParams = [NSString stringWithFormat:@"%@://%@:%@%@/%@?%@", self.cocoaTentCommunication.tentHostProtocol, self.cocoaTentCommunication.tentHost, self.cocoaTentCommunication.tentHostPort, self.cocoaTentCommunication.tentRoot, @"/oauth/authorize", params];
     
     NSURL *url = [NSURL URLWithString:fullParams];
     
@@ -261,7 +262,7 @@
     
     NSMutableDictionary *profileInfo = [NSMutableDictionary dictionaryWithCapacity:0];
     
-    [profileInfo setValue:@"Dustin Rue" forKey:@"name"];
+    [profileInfo setValue:@"Justin Sanders" forKey:@"name"];
     [profileInfo setValue:@"http://example.org/avatar.jpg" forKey:@"avatar_url"];
     [profileInfo setValue:@"2012-08-23" forKey:@"birthdate"];
     [profileInfo setValue:@"The Internet" forKey:@"location"];

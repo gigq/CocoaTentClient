@@ -40,9 +40,10 @@
         return self;
     
     self.tentVersion      = @"0.1.0";
-    self.tentHostProtocol = @"http";
-    self.tentHost         = @"localhost";
-    self.tentHostPort     = @"3000";
+    self.tentHostProtocol = @"https";
+    self.tentHost         = @"gigq.tent.is";
+    self.tentHostPort     = @"443";
+    self.tentRoot         = @"/tent";
     self.tentMimeType     = @"application/vnd.tent.v0+json";
     self.urlScheme        = @"cocoatentclient";
     
@@ -63,6 +64,8 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@:%@", self.tentHostProtocol, self.tentHost, self.tentHostPort]];
     
     AFHTTPClient *client = [AFHTTPClient clientWithBaseURL:url];
+    
+    path = [NSString stringWithFormat:@"%@%@", self.tentRoot, path];
     
     NSMutableURLRequest *request = [client requestWithMethod:method path:path parameters:nil];
     
